@@ -9,7 +9,6 @@ executable aoc2017
     other-modules:
         Day
         Days
-        Days.Day01
     build-depends:   
         base >= 4.20 && < 4.21,
         containers >= 0.7 && < 0.8
@@ -20,7 +19,6 @@ library
     exposed-modules:  Days
     other-modules:
         Day
-        Days.Day01
     build-depends:
         base >= 4.20 && < 4.21,
         containers >= 0.7 && < 0.8
