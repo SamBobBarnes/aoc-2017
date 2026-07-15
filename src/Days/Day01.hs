@@ -11,7 +11,7 @@ solution = Day
   }
 
 p1 :: String -> String
-p1 s = s
+p1 s = s ++ "!"
 
 p2 :: String -> String
-p2 s = s
+p2 s = s ++ "?"
