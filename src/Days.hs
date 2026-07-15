@@ -10,7 +10,12 @@ module Days
 
 import qualified Data.Map.Strict as Map
 import Day (Day)
+import Days.Day01
+import Days.Day02
 
 days :: Map.Map Int Day
 days =
-  Map.empty
+  Map.fromList
+    [ (1, Days.Day01.solution),
+      (2, Days.Day02.solution)
+    ]
