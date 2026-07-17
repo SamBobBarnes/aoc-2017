@@ -4,3 +4,4 @@ dist-newstyle/
 *.o
 input/*.txt
 !input/.gitkeep
+.vscode/
