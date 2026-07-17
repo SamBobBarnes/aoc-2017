@@ -16,20 +16,28 @@ solution =
     }
 
 p1 :: String -> String
-p1 s =
-  let arr = getPairs s
-   in trace
-        ("getPairs=" ++ show arr)
-        s
-        let arr2 = take (length arr - 1) arr
-         in trace ("arr2=" ++ show arr2) s
+p1 s = s
 
-getPairs :: [Char] -> [[Char]]
-getPairs (s : xs) = getFirstPair 0 2 (s : xs) : getPairs xs
-getPairs [] = []
+countMatchingPairs :: [Char] -> Int -> Int
+countMatchingPairs [] _ = 0
 
-getFirstPair :: Int -> Int -> [Char] -> [Char]
-getFirstPair start end xs = take (end - start) (drop start xs)
+{- pseudocode
+for i in 0..length(xs) - 1:
+  let a = i
+  let b = i + 1
+  if b == length(xs):
+    b = 0
+  if doAAndBMatch(xs, i, i + 1):
+      count += 1
+
+-}
+
+doAAndBMatch :: [Char] -> Int -> Int -> Bool
+doAAndBMatch [] _ _ = False
+doAAndBMatch xs a b
+  | a < 0 || b < 0 = False
+  | a >= length xs || b >= length xs = False
+  | otherwise = (xs !! a) == (xs !! b)
 
 p2 :: String -> String
 p2 s = s ++ "?"
