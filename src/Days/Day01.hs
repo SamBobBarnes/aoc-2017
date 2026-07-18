@@ -34,6 +34,27 @@ countMatchingPairs xs count i =
         then countMatchingPairs xs (count + (getValOfChar (xs !! i))) (i + 1)
         else countMatchingPairs xs count (i + 1)
 
+-- ([Char] xs, Int count, Int i) -> Int
+countMatchingPairsWithStepover :: [Char] -> Int -> Int -> Int
+countMatchingPairsWithStepover [] _ _ = 0
+countMatchingPairsWithStepover xs count i =
+  if i == ((length xs) - 1)
+    then
+      if doAAndBMatch xs i (getNextStep i stepover (length xs))
+        then count + (getValOfChar (xs !! i))
+        else count
+    -- return count
+    else
+      if doAAndBMatch xs i (getNextStep i stepover (length xs)) -- recurse
+        then countMatchingPairs xs (count + (getValOfChar (xs !! i))) (i + 1)
+        else countMatchingPairs xs count (i + 1)
+  where
+    stepover = div (length xs) 2
+
+-- (Int i, Int stepover, Int totalLen) -> Int
+getNextStep :: Int -> Int -> Int -> Int
+getNextStep i so tl = mod (i + so) tl
+
 {- pseudocode
 for i in 0..length(xs) - 1:
   let a = i
@@ -56,4 +77,4 @@ getValOfChar c = (fromEnum c) - (fromEnum '0')
 
 -- Part 2
 p2 :: String -> String
-p2 s = s ++ "?"
+p2 s = show $ countMatchingPairsWithStepover s 0 0
